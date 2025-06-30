@@ -512,13 +512,27 @@ function App() {
   }
 
   // ---- POST JOB ----
+  /**
+   * Handles job posting by recruiters, inserting a new job entry into the Supabase 'jobs' table.
+   * Ensures the job entry includes the recruiter's email for accountability.
+   * If any Supabase error occurs, provides a detailed error message.
+   */
   async function handlePostJob(fields, setError, close) {
     setLoading(true);
     // Insert into "jobs"
     const { title, location, skills } = fields;
-    let { error } = await supabase.from("jobs").insert([{ title, location, skills }]);
+    // Attach recruiter_email if available (for audit and filtering)
+    const recruiter_email = user?.email || null;
+    let { error } = await supabase.from("jobs").insert([
+      { title, location, skills, recruiter_email }
+    ]);
     if (error) {
-      setError("Error posting job: " + (error.message || error.details || "Unknown error"));
+      // Give the most informative error possible
+      let errorMsg = "Error posting job: ";
+      if (error.details) errorMsg += error.details + " ";
+      if (error.message) errorMsg += error.message + " ";
+      if (error.hint) errorMsg += error.hint;
+      setError(errorMsg.trim());
     } else {
       fetchJobs();
       close();

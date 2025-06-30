@@ -517,8 +517,9 @@ function App() {
     // Insert into "jobs"
     const { title, location, skills } = fields;
     let { error } = await supabase.from("jobs").insert([{ title, location, skills }]);
-    if (error) setError("Error posting job");
-    else {
+    if (error) {
+      setError("Error posting job: " + (error.message || error.details || "Unknown error"));
+    } else {
       fetchJobs();
       close();
     }

@@ -3,7 +3,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background: var(--bg-primary);
+  /* Abstract geometric + gradient background using a CSS layer and SVG */
+  background: 
+    linear-gradient(120deg, #ebc02417 0%, #8fca6820 40%, #22d3ee15 100%),
+    url("data:image/svg+xml;utf8,<svg width='400' height='400' xmlns='http://www.w3.org/2000/svg'><circle cx='130' cy='90' r='70' fill='%2322d3ee15'/><rect x='260' y='220' width='120' height='120' rx='30' fill='%23ebc02422'/><polygon points='40,370 150,320 180,370' fill='%238fca6833'/><ellipse cx='325' cy='100' rx='28' ry='18' fill='%2322d3ee22'/></svg>");
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, 440px 440px;
+  background-position: center center, right 5% bottom 0%;
   color: var(--text-primary);
 }
 
@@ -25,6 +31,13 @@ body {
   --text-primary: #fff;
   --text-secondary: #ccdbe6;
   --border: #333;
+}
+/* Fade geometric overlays in dark mode for minimal distraction */
+[data-theme="dark"] body,
+[data-theme="dark"] .main-content {
+  background:
+    linear-gradient(120deg, #252b3388 0%, #1a1a1abc 80%, #161b2233 100%);
+  background-image: none !important;
 }
 
 *, *:before, *:after {
@@ -200,7 +213,13 @@ hr {
   flex: 1;
   min-width: 0;
   min-height: 100vh;
-  background: var(--bg-primary);
+  /* Layer geometric background as a subtle effect */
+  background: 
+    linear-gradient(120deg, #ebc02414 0%, #8fca6817 40%, #22d3ee0d 100%),
+    url("data:image/svg+xml;utf8,<svg width='400' height='400' xmlns='http://www.w3.org/2000/svg'><circle cx='170' cy='120' r='64' fill='%2322d3ee12'/><rect x='260' y='220' width='110' height='80' rx='17' fill='%23ebc02415'/><polygon points='60,350 120,300 150,370' fill='%238fca6822'/><ellipse cx='310' cy='60' rx='22' ry='13' fill='%2322d3ee11'/></svg>");
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, 415px 415px;
+  background-position: center center, left 5% top 5%;
   display: flex;
   flex-direction: column;
 }

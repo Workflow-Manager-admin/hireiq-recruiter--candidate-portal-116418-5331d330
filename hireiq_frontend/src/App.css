@@ -1,104 +1,188 @@
-/* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #ebc024;
+  --secondary: #8fca68;
+  --accent: #22d3ee;
+  --bg: #fff;
+  --bg-alt: #f8f9fa;
+  --text: #222;
+  --text-light: #666;
+  --shadow: 0 2px 10px rgba(34,44,49,0.05);
+  --border: #e5e7eb;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+body, html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+.header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 50;
+  position: sticky;
+  top: 0;
+}
+.brand {
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.nav a, .btn-logout {
+  margin: 0 0.6rem;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 1rem;
+}
+.btn-logout {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container.main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--bg-alt);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+@media (max-width:700px) {
+  .container.main { padding: 1rem; margin: 0.5rem;}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-container {
+  max-width: 350px;
+  margin: 2.5rem auto;
+  background: var(--bg-alt);
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 1rem;
 }
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
+input, textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 1rem;
+  background: #fafbfc;
+}
+textarea { min-height: 90px; resize: vertical; }
+
+.btn-primary, .btn-secondary, .btn-accent {
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin-top: 0.5rem;
+  transition: background .2s;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #333;
+}
+.btn-secondary {
+  background: var(--secondary);
+  color: #222;
+}
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.success-msg, .info {
+  color: var(--secondary);
+  font-weight: bold;
+  margin-top: 10px;
+}
+.error-msg {
+  color: #ef4444;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.role-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.role-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1.6rem 2rem;
+  flex: 1 1 220px;
+  display: flex; flex-direction: column; align-items: center;
+  box-shadow: var(--shadow);
+  min-width: 220px;
+  max-width: 340px;
+}
+.role-card h2 { color: var(--accent); }
+.role-card .btn-primary, .role-card .btn-secondary {
+  width: 100%;
+  margin-top: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Job Card Styles */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.job-card {
+  background: #fff;
+  border: 1.2px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+  gap: 0.8rem;
+}
+.job-details {
+  font-size: 1rem; color: var(--text-light); font-weight: 500;
+}
+.applicants-list {
+  padding-top: 1rem;
+}
+.minimal-table {
+  width: 100%; border-collapse: collapse; margin-top: 1rem; background: #fff;
+}
+.minimal-table thead th {
+  background: var(--bg-alt); color: var(--primary); border-bottom: 2px solid var(--border); font-size: 1rem;
+}
+.minimal-table td, .minimal-table th {
+  padding: 0.8rem 1rem; border: 1px solid var(--border); font-size: 1rem;
+}
+@media (max-width: 700px) {
+  .minimal-table td, .minimal-table th { padding: 0.4rem 0.5rem; font-size: 0.95rem;}
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+@media (max-width: 800px) {
+  .role-cards { flex-direction: column; gap: 1.5rem; }
+  .job-list { gap: 1rem; }
 }
